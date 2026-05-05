@@ -9,9 +9,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-destello-pasteleria-2024-clave-secreta'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-destello-pasteleria-2024-clave-secreta')
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -23,16 +23,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Terceros
     'rest_framework',
     'corsheaders',
-    # Propias
     'productos',
     'ventas',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # ← debe ir primero
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,7 +79,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-# ── CORS — permitir peticiones desde React ──
+# ── CORS ──
 CORS_ALLOW_ALL_ORIGINS = True
 
 # ── Internacionalización ──
@@ -90,15 +88,8 @@ TIME_ZONE     = 'America/Santiago'
 USE_I18N      = True
 USE_TZ        = True
 
-STATIC_URL = 'static/'
+# ── Archivos estáticos ──
+STATIC_URL  = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# ── Configuración para producción ──
-import os
-ALLOWED_HOSTS = ['*']
-CORS_ALLOW_ALL_ORIGINS = True
-
-# Static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
