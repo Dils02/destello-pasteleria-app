@@ -5,16 +5,18 @@ const api = axios.create({
 })
 
 // ── Productos ──
-export const getProductos   = ()         => api.get('/productos/')
-export const createProducto = (data)     => api.post('/productos/', data)
-export const deleteProducto = (id)       => api.delete(`/productos/${id}/`)
+export const getProductos      = ()         => api.get('/productos/')
+export const createProducto    = (data)     => api.post('/productos/', data)
+export const deleteProducto    = (id)       => api.delete(`/productos/${id}/`)
 
 // ── Ingredientes ──
-export const addIngrediente = (id, data) => api.post(`/productos/${id}/agregar_ingrediente/`, data)
+export const addIngrediente    = (id, data) => api.post(`/productos/${id}/agregar_ingrediente/`, data)
+export const updateIngrediente = (id, data) => api.patch(`/ingredientes/${id}/`, data)
+export const deleteIngrediente = (id)       => api.delete(`/ingredientes/${id}/`)
 
 // ── Ventas ──
-export const getVentas      = ()         => api.get('/ventas/')
-export const createVenta    = (data)     => api.post('/ventas/', data)
-export const deleteVenta    = (id)       => api.delete(`/ventas/${id}/`)
+export const getVentas         = ()         => api.get('/ventas/')
+export const createVenta       = (data)     => api.post('/ventas/', data)
+export const deleteVenta       = (id)       => api.delete(`/ventas/${id}/`)
 
 export default api
