@@ -19,4 +19,10 @@ export const getVentas         = ()         => api.get('/ventas/')
 export const createVenta       = (data)     => api.post('/ventas/', data)
 export const deleteVenta       = (id)       => api.delete(`/ventas/${id}/`)
 
+// ── Pedidos ──
+export const getPedidos        = ()         => api.get('/pedidos/')
+export const createPedido      = (data)     => api.post('/pedidos/', data)
+export const deletePedido      = (id)       => api.delete(`/pedidos/${id}/`)
+export const cambiarEstado     = (id, estado) => api.patch(`/pedidos/${id}/cambiar_estado/`, { estado })
+
 export default api
